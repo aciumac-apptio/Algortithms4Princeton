@@ -7,7 +7,8 @@
 5. **Assignment 5:** KD-Tree                    (87%)
 
 # Algortithms II (by Robert Sedgewick)
-Pending...
+Hopefully Coursera would provide the tests to check solutions.
+Will wait and then start working on these assigments from COS 226 @ Princeton.
 1. **Assignment 1:** WordNet               
 2. **Assignment 2:** Seam Carving   
 3. **Assignment 3:** Baseball Elimination 
