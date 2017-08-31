@@ -10,6 +10,7 @@
 Hopefully Coursera would provide the tests to check solutions.
 Will wait and then start working on these assigments from COS 226 @ Princeton.
 1. **Assignment 1:** WordNet **(COMPLETE)**     (N/A%)
+  * Additional Functionality: Client is able to print the words that connect the nouns in question.
 2. **Assignment 2:** Seam Carving   
 3. **Assignment 3:** Baseball Elimination 
 4. **Assignment 4:** Boggle    
