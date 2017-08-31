@@ -8,12 +8,12 @@
 import edu.princeton.cs.algs4.*;
 import edu.princeton.cs.algs4.Digraph;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.*;
+import java.util.Stack;
 
 public class ShortestCommonAncestor {
     private Digraph G;
+    private Stack<Integer> path;   // not required, but for personal enjoyment (want to print the path taken)
     private int dist;
 
     // constructor takes a rooted DAG as argument
@@ -56,9 +56,37 @@ public class ShortestCommonAncestor {
             }
         }
 
+        // NOT REQUIRED In the API!!!!!!!!!
+        path = new Stack<>();
+        Stack<Integer> temp = new Stack<>();
+        java.util.Queue<Integer> q = new LinkedList<>();
+        for (int j : path_v.pathTo(ancestor)) {
+            path.push(j);
+        }
+
+        // Reverse the order of elements in the second queue
+       for (int j : path_w.pathTo(ancestor)) {
+            q.add(j);
+        }
+
+        while (!q.isEmpty()) {
+            temp.push(q.remove());
+        }
+
+        // Remove the common ancestor (already in the stack) and store in the main stack
+        temp.pop();
+        while (!temp.isEmpty()) {
+            path.push(temp.pop());
+        }
+
         dist = distTo;
         return ancestor;
     }
+
+    public Stack<Integer> path() {
+        return path;
+    }
+
 
     private boolean hasMultipleRoots(Digraph G) {
         int count = 0;
@@ -79,14 +107,14 @@ public class ShortestCommonAncestor {
         In in = new In("wordnet/digraph25.txt");
         Digraph G = new Digraph(in);
         ShortestCommonAncestor sca = new ShortestCommonAncestor(G);
-        System.out.println("Testing single vertex shortest common ancestor:");
+       /* System.out.println("Testing single vertex shortest common ancestor:");
         System.out.println("Ancestor 1 + 4: " + sca.ancestor(1, 4));
         System.out.println("Distance between 1 and 4: " + sca.length(1, 4));
-        System.out.println();
+        System.out.println();*/
         System.out.println("Ancestor 13 + 22: " + sca.ancestor(13, 22));
         System.out.println("Distance between 13 and 22: " + sca.length(13, 22));
         System.out.println();
-        System.out.println("Ancestor 23 + 22: " + sca.ancestor(23, 22));
+        /*System.out.println("Ancestor 23 + 22: " + sca.ancestor(23, 22));
         System.out.println("Distance between 23 and 22: " + sca.length(23, 22));
         System.out.println();
 
@@ -121,7 +149,6 @@ public class ShortestCommonAncestor {
             System.out.println();
         } catch (IllegalArgumentException e) {
             System.out.println("Confirm: A cycle is present;");
-        }
-
+        }*/
     }
 }

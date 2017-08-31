@@ -133,18 +133,66 @@ public class WordNet {
         return shrt.length(a, b);
     }
 
+    // Prints path from first noun to second.
+    // NOT REQUIRED
+    private String printPath(String noun1, String noun2) {
+        nounCheck(noun1, noun2);
+        Set<Integer> a = nounsToId.get(noun1);
+        Set<Integer> b = nounsToId.get(noun2);
+        int anc = shrt.ancestor(b, a);
+        Stack<Integer> stack = shrt.path();
+        StringBuilder str = new StringBuilder();
+        while (!stack.isEmpty()) {
+            Set<String> set = idToNouns.get(stack.pop());
+            for (String s : set){
+                str.append(s + ", ");
+            }
+            str.delete(str.length()-2, str.length());
+            str.append(" ->\n");
+        }
+
+        return str.toString();
+    }
+
+
     // do unit testing of this class
     public static void main(String[] args) {
-        WordNet net = new WordNet("wordnnet/synsets.txt", "wordnet/hypernyms.txt");
+        WordNet net = new WordNet("wordnet/synsets.txt", "wordnet/hypernyms.txt");
+        System.out.println("Testing distance(), sca() and custom printPath() methods:");
+        System.out.println("Print path from \"George_Bush\" to \"Putin\":");
+        System.out.println("Total distance between \"George_Bush\" to \"Putin\" is: " + net.distance("George_Bush", "Putin"));
+        System.out.println("Common ancestor for \"George_Bush\" and \"Putin\" is: " + net.sca("George_Bush", "Putin"));
+        System.out.println(net.printPath("George_Bush", "Putin"));
+
+        System.out.println("Print path from \"George_Bush\" to \"chimpanzee\":");
+        System.out.println("Total distance between \"George_Bush\" to \"chimpanzee\" is: " + net.distance("George_Bush", "chimpanzee"));
+        System.out.println("Common ancestor for \"George_Bush\" and \"chimpanzee\" is: " + net.sca("George_Bush", "chimpanzee"));
+        System.out.println(net.printPath("George_Bush", "chimpanzee"));
+
+        System.out.println("Print path from \"Putin\" to \"chimpanzee\":");
+        System.out.println("Total distance between \"Putin\" to \"chimpanzee\" is: " + net.distance("Putin", "chimpanzee"));
+        System.out.println("Common ancestor for \"Putin\" and \"chimpanzee\" is: " + net.sca("Putin", "chimpanzee"));
+        System.out.println(net.printPath("Putin", "chimpanzee"));
+
+        System.out.println("Print path from \"waif\" from \"punk\":");
+        System.out.println("Total distance between \"waif\" to \"punk\" is: " + net.distance("waif", "punk"));
+        System.out.println("Common ancestor for  \"waif\" and \"punk\" is: " + net.sca("waif", "punk"));
+        System.out.println(net.printPath("waif", "punk"));
+
+        System.out.println("Print path from \"abracadabra\" from \"menace\":");
+        System.out.println("Total distance between \"abracadabra\" to \"menace\" is: " + net.distance("abracadabra", "menace"));
+        System.out.println("Common ancestor for  \"abracadabra\" and \"menace\" is: " + net.sca("abracadabra", "menace"));
+        System.out.println(net.printPath("abracadabra", "menace"));
+
+        System.out.println("Testing isNoun methods:");
+        System.out.println("Is bond a noun?: " + net.isNoun("bond"));
+        System.out.println("Is George_Bush a noun?: " + net.isNoun("George_Bush"));
+        System.out.println("Is JFK a noun?: " + net.isNoun("JFK"));
+        System.out.println("Is abracadabra a noun?: " + net.isNoun("abracadabra"));
         System.out.println();
-        System.out.println(net.sca("waif", "punk"));
-        System.out.println(net.distance("waif", "punk"));
-        System.out.println(net.isNoun("john"));
-        System.out.println(net.isNoun("bond"));
 
         System.out.println("Testing hypernymsWrong8BFS:");
         WordNet net_1 = new WordNet("wordnet/synsets8.txt", "wordnet/hypernyms8WrongBFS.txt");
-        System.out.println();
         System.out.println("Shortest ancestor between e(4) and c(2) should be d(3): " + net_1.sca("e", "c"));
         System.out.println("Shortest distance between e(4) and c(2) should be 4: " + net_1.distance("e", "c"));
 
