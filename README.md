@@ -9,7 +9,7 @@
 # Algortithms II (by Robert Sedgewick)
 Hopefully Coursera would provide the tests to check solutions.
 Will wait and then start working on these assigments from COS 226 @ Princeton.
-1. **Assignment 1:** WordNet **     (99%)
+1. **Assignment 1:** WordNet     (99%)
   * Additional Functionality: Client is able to print the words that connect the nouns in question.
   * 10/23/17 Version 2: Uploaded to Coursera.
 2. **Assignment 2:** Seam Carving   
