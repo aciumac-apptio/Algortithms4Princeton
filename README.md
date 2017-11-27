@@ -12,7 +12,8 @@ Will wait and then start working on these assigments from COS 226 @ Princeton.
 1. **Assignment 1:** WordNet     (100%)
   * Additional Functionality: Client is able to print the words that connect the nouns in question.
   * 10/23/17 Version 2: Uploaded to Coursera.
-2. **Assignment 2:** Seam Carving   
+2. **Assignment 2:** Seam Carving   (91%)
+  * Need to work on passing memory tests.
 3. **Assignment 3:** Baseball Elimination 
 4. **Assignment 4:** Boggle    
 5. **Assignment 5:** Burrows-Wheeler Data Compression
